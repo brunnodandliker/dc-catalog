@@ -26,7 +26,7 @@ function Home() {
     }, [])
 
   return (
-    <div className="Home">
+    <div className="homeContainer">
      {
         heroes.map(hero => <HeroCard hero={hero} />)
      }

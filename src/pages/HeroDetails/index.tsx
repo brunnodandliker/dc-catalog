@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import IHeroProps from '../../interfaces/IHeroProps';
 import api from '../../services/api';
 import { getAllHeroes } from '../../services/requests';
+import './style.css';
 
 interface IHeroDetailsParams {
   id: string;
@@ -32,7 +33,32 @@ const HeroDetails : React.FC = (props) => {
 
   if (loading || !hero) return <p>carregando herói...</p>
 
-  return <h1>{hero.name}</h1>
+  return (
+    <div className="heroDetailsContainer">
+      <div className="photoContainer">
+        <img className="hero-image-details" src={hero.images.lg} />
+      </div>
+
+      <div className="infoContainer">
+        <h1>{hero.name}</h1>
+        <p>{hero.biography.fullName}</p>
+        <p>{hero.appearance.gender}</p>
+        <p>{hero.appearance.race}</p>
+        <p>{hero.appearance.weight[1]}</p>
+        <p>{hero.appearance.height[1]}</p>
+        <p>{hero.work.occupation}</p>
+        <p>{hero.connections.groupAffiliation}</p>
+        <p>{hero.connections.relatives}</p>
+        <p>{hero.powerstats.intelligence}</p>
+        <p>{hero.powerstats.combat}</p>
+        <p>{hero.powerstats.durability}</p>
+        <p>{hero.powerstats.power}</p>
+        <p>{hero.powerstats.speed}</p>
+        <p>{hero.powerstats.strength}</p>
+      </div>
+
+    </div>
+  )
 }
 
 export default HeroDetails;

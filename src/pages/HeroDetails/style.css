@@ -1,0 +1,22 @@
+.heroDetailsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.photoContainer {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoContainer {
+  flex: 1;
+}
+
+.hero-image-details {
+  width: 80%;
+}
+
+p {
+  margin-bottom: 16px;
+}

@@ -1,3 +1,20 @@
+.heroCardContainer {
+  margin-top: 24px;
+}
+
 .hero-image {
   width: 200px;
+  border-radius: 12px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 14px;
 }
