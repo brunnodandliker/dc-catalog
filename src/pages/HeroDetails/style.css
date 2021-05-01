@@ -20,3 +20,14 @@
 p {
   margin-bottom: 16px;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.between {
+  justify-content: space-between;
+  width: 50%;
+}

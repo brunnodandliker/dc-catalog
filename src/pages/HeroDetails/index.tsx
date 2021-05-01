@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import StatCircle from '../../components/StatCircle';
 import IHeroProps from '../../interfaces/IHeroProps';
 import api from '../../services/api';
 import { getAllHeroes } from '../../services/requests';
@@ -31,6 +32,10 @@ const HeroDetails : React.FC = (props) => {
       getHero();
   }, [])
 
+  const createArrayForStatusCircles = (stat: number): number[] => {
+    return Array.from(Array(Math.floor(stat / 10)).keys())
+  }
+
   if (loading || !hero) return <p>carregando herói...</p>
 
   return (
@@ -41,20 +46,69 @@ const HeroDetails : React.FC = (props) => {
 
       <div className="infoContainer">
         <h1>{hero.name}</h1>
-        <p>{hero.biography.fullName}</p>
-        <p>{hero.appearance.gender}</p>
-        <p>{hero.appearance.race}</p>
-        <p>{hero.appearance.weight[1]}</p>
-        <p>{hero.appearance.height[1]}</p>
-        <p>{hero.work.occupation}</p>
-        <p>{hero.connections.groupAffiliation}</p>
-        <p>{hero.connections.relatives}</p>
-        <p>{hero.powerstats.intelligence}</p>
-        <p>{hero.powerstats.combat}</p>
-        <p>{hero.powerstats.durability}</p>
-        <p>{hero.powerstats.power}</p>
-        <p>{hero.powerstats.speed}</p>
-        <p>{hero.powerstats.strength}</p>
+        <p><strong>Name:</strong> {hero.biography.fullName}</p>
+        <p><strong>Genger:</strong> {hero.appearance.gender}</p>
+        <p><strong>Race:</strong> {hero.appearance.race}</p>
+        <p><strong>Weight:</strong> {hero.appearance.weight[1]}</p>
+        <p><strong>Height:</strong> {hero.appearance.height[1]}</p>
+        <p><strong>Occupation:</strong> {hero.work.occupation}</p>
+        <p><strong>Affilitation:</strong> {hero.connections.groupAffiliation}</p>
+        <p><strong>Relatives:</strong> {hero.connections.relatives}</p>
+
+        <div className="row between">
+          <strong>Intelligence:</strong>
+          <div className="row">
+            {
+              createArrayForStatusCircles(hero.powerstats.intelligence).map(() => <StatCircle />)
+            }
+          </div>
+        </div>
+
+        <div className="row between">
+          <strong>Combat:</strong>
+          <div className="row">
+            {
+              createArrayForStatusCircles(hero.powerstats.combat).map(() => <StatCircle />)
+            }
+          </div>
+        </div>
+
+        <div className="row between">
+          <strong>Durability:</strong>
+          <div className="row">
+            {
+              createArrayForStatusCircles(hero.powerstats.durability).map(() => <StatCircle />)
+            }
+          </div>
+        </div>
+
+        <div className="row between">
+          <strong>Power:</strong>
+          <div className="row">
+            {
+              createArrayForStatusCircles(hero.powerstats.power).map(() => <StatCircle />)
+            }
+          </div>
+        </div>
+
+        <div className="row between">
+          <strong>Speed:</strong>
+          <div className="row">
+            {
+              createArrayForStatusCircles(hero.powerstats.speed).map(() => <StatCircle />)
+            }
+          </div>
+        </div>
+
+        <div className="row between">
+          <strong>Strength:</strong>
+          <div className="row">
+            {
+              createArrayForStatusCircles(hero.powerstats.strength).map(() => <StatCircle />)
+            }
+          </div>
+        </div>
+
       </div>
 
     </div>
