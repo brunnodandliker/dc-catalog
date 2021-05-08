@@ -33,7 +33,7 @@ const HeroDetails : React.FC = (props) => {
   }, [])
 
   const createArrayForStatusCircles = (stat: number): number[] => {
-    return Array.from(Array(Math.floor(stat / 10)).keys())
+    return Array.from(Array(Math.round(stat / 10)).keys())
   }
 
   if (loading || !hero) return <p>carregando herói...</p>
@@ -55,8 +55,8 @@ const HeroDetails : React.FC = (props) => {
         <p><strong>Affilitation:</strong> {hero.connections.groupAffiliation}</p>
         <p><strong>Relatives:</strong> {hero.connections.relatives}</p>
 
-        <div className="row between">
-          <strong>Intelligence:</strong>
+        <div className="between top">
+          <strong>Intelligence: ({hero.powerstats.intelligence})</strong>
           <div className="row">
             {
               createArrayForStatusCircles(hero.powerstats.intelligence).map(() => <StatCircle />)
@@ -64,8 +64,8 @@ const HeroDetails : React.FC = (props) => {
           </div>
         </div>
 
-        <div className="row between">
-          <strong>Combat:</strong>
+        <div className="between top">
+          <strong>Combat: ({hero.powerstats.combat})</strong>
           <div className="row">
             {
               createArrayForStatusCircles(hero.powerstats.combat).map(() => <StatCircle />)
@@ -73,8 +73,8 @@ const HeroDetails : React.FC = (props) => {
           </div>
         </div>
 
-        <div className="row between">
-          <strong>Durability:</strong>
+        <div className="between top">
+          <strong>Durability: ({hero.powerstats.durability})</strong>
           <div className="row">
             {
               createArrayForStatusCircles(hero.powerstats.durability).map(() => <StatCircle />)
@@ -82,8 +82,8 @@ const HeroDetails : React.FC = (props) => {
           </div>
         </div>
 
-        <div className="row between">
-          <strong>Power:</strong>
+        <div className="between top">
+          <strong>Power: ({hero.powerstats.power})</strong>
           <div className="row">
             {
               createArrayForStatusCircles(hero.powerstats.power).map(() => <StatCircle />)
@@ -91,8 +91,8 @@ const HeroDetails : React.FC = (props) => {
           </div>
         </div>
 
-        <div className="row between">
-          <strong>Speed:</strong>
+        <div className="between top">
+          <strong>Speed: ({hero.powerstats.speed})</strong>
           <div className="row">
             {
               createArrayForStatusCircles(hero.powerstats.speed).map(() => <StatCircle />)
@@ -100,8 +100,8 @@ const HeroDetails : React.FC = (props) => {
           </div>
         </div>
 
-        <div className="row between">
-          <strong>Strength:</strong>
+        <div className="between top">
+          <strong>Strength: ({hero.powerstats.strength})</strong>
           <div className="row">
             {
               createArrayForStatusCircles(hero.powerstats.strength).map(() => <StatCircle />)

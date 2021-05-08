@@ -15,17 +15,17 @@ import HeroDetails from './pages/HeroDetails';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/hero/:id">
-            <HeroDetails />
-          </Route>
-         {/*  <Route path="/">
-            <Home />
-          </Route> */}
-        </Switch>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/hero/:id">
+          <HeroDetails />
+        </Route>
+        {/*  <Route path="/">
+          <Home />
+        </Route> */}
+      </Switch>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

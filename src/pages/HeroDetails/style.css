@@ -31,3 +31,7 @@ p {
   justify-content: space-between;
   width: 50%;
 }
+
+.top {
+  margin-top: 12px;
+}
