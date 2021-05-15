@@ -7,7 +7,6 @@ interface IHeroCardProps {
 }
 
 const HeroCard : React.FC<IHeroCardProps> = (props) => {
-  console.log('props', props);
   const hero = props.hero;
 
   return (

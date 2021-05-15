@@ -6,21 +6,20 @@ import HeroCard from '../../components/HeroCard';
 import { getAllHeroes } from '../../services/requests';
 import Header from '../../components/Header';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { ActionCreators } from '../../store/actions';
+
 const DC_COMICS = 'DC Comics';
 
-function Home() {
-
-    const [heroes, setHeroes] = useState<IHeroProps[]>([]);
-    const [allHeroes, setAllHeroes] = useState<IHeroProps[]>([]);
-
-    const [searchText, setSearchText] = useState<string>('');
-
+function Home(props: any) {
     const getHeroes = async () => {
       try {
         const { data } = await getAllHeroes();
         const dcHeroes = data.filter((hero: IHeroProps) => hero.biography.publisher === DC_COMICS)
-        setHeroes(dcHeroes);
-        setAllHeroes(dcHeroes);
+        props.addHeroesToRedux(dcHeroes);
+        console.log('dcHeroes', dcHeroes)
+        props.addAllHeroesToRedux(dcHeroes);
       } catch (error) {
         console.log(error);
       }
@@ -30,28 +29,30 @@ function Home() {
         getHeroes();
     }, [])
 
-    useEffect(() => {
-      handleSeach();
-    }, [searchText])
-
-    const handleSeach = () => {
-      if (!searchText) return setHeroes(allHeroes);
-
-      const findHeroes = allHeroes.filter(hero => hero.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
-      setHeroes(findHeroes);
-    }
 
   return (
     <>
-      <Header searchText={searchText} setSearchText={setSearchText}  />
+      <Header />
 
       <div className="homeContainer">
         {
-            heroes.map(hero => <HeroCard hero={hero} />)
+          props.heroes.map((hero: any) => <HeroCard hero={hero} />)
         }
       </div>
     </>
   );
 }
 
-export default Home;
+const mapStateToProps = (state: any): any => ({
+  heroes: state.heroesReducer.heroes,
+  allHeroes: state.heroesReducer.allHeroes,
+});
+
+const mapDispatchToProps = (dispatch: any): any => bindActionCreators({
+  addHeroesToRedux: ActionCreators.addHeroesToRedux,
+  addAllHeroesToRedux: ActionCreators.addAllHeroesToRedux,
+  // ...ActionCreators
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
